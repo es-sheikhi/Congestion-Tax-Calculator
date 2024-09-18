@@ -8,6 +8,7 @@ namespace DAL
 {
     public class PublicHoliday
     {
+        public int Id { get; set; }
         public DateTime Date { get; set; }
         public City City { get; set; }
     }

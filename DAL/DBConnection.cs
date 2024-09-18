@@ -8,6 +8,6 @@ namespace DAL
 {
     internal static class DBConnection
     {
-        public static string ConnectionString = "server=.; database=CityTax; integrated security=true";
+        public static string ConnectionString = "server=(localdb)\\MSSQLLOCALDB;database=CityTax";
     }
 }

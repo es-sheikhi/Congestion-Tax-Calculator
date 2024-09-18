@@ -8,6 +8,7 @@ namespace DAL
 {
     public class Fee
     {
+        public int Id { get; set; }
         public TimeOnly From { get; set; }
         public TimeOnly To { get; set; }
         public decimal Amount { get; set; }

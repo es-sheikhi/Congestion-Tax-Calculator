@@ -8,6 +8,7 @@ namespace DAL
 {
     public class FreeDay
     {
+        public int Id { get; set; }
         public DayOfWeek DayOfWeek { get; set; }
         public City City { get; set; }
     }
