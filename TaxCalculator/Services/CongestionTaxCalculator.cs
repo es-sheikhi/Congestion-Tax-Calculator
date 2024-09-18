@@ -25,26 +25,26 @@ namespace TaxCalculator
                 return 0;
 
             decimal totalFee = 0;
-            DateTime? lastTaxedTime = null;
+            DateTime? lastChekedTime = null;
 
-            foreach (var date in dateTimes.OrderBy(d => d))
+            foreach (var date in dateTimes)
             {
                 if (_ruleChecker.CanChargeTax(date, vehicle))
                 {
                     decimal fee = _ruleChecker.CheckFee(date);
-                    totalFee += GetApplicableFee(fee, date, lastTaxedTime);
-                    lastTaxedTime = date;
+                    totalFee += GetApplicableFee(fee, date, lastChekedTime);
+                    lastChekedTime = date;
                 }
             }
 
             return Math.Min(totalFee, 60);
         }
 
-        public decimal GetApplicableFee(decimal currentFee, DateTime currentDate, DateTime? lastTaxedTime)
+        public decimal GetApplicableFee(decimal currentFee, DateTime currentDate, DateTime? lastChekedTime)
         {
-            if (lastTaxedTime.HasValue && _ruleChecker.CheckLastTaxedTime(currentDate, lastTaxedTime.Value))
+            if (lastChekedTime.HasValue && _ruleChecker.CheckLastTaxedTime(currentDate, lastChekedTime.Value))
             {
-                decimal lastFee = _ruleChecker.CheckFee(lastTaxedTime.Value);
+                decimal lastFee = _ruleChecker.CheckFee(lastChekedTime.Value);
                 return Math.Min(currentFee, lastFee);
             }
             return currentFee;
