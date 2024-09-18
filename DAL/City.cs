@@ -9,7 +9,7 @@ namespace DAL
     public class City
     {
         public string Name { get; set; }
-        public List<Fee> FeeList { get; set; }
+        public List<Fee> Fees { get; set; }
         public List<FreeDay> FreeDays { get; set; }
         public List<PublicHoliday> PublicHolidays { get; set; }
     }
