@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using TaxCalculator.Models;
 
-namespace TaxCalculator
+namespace TaxCalculator.Services
 {
     public interface ITaxCalculator
     {
         decimal CalculateTotalTax(IVehicle vehicle, DateTime[] dateTimes);
+        decimal GetApplicableFee(decimal currentFee, DateTime currentDate, DateTime? lastTaxedTime);
     }
 }
