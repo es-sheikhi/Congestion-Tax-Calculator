@@ -1,13 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DAL.Utility;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace DAL.Models
 {
-    public class CityTaxContext:DbContext
+    public class CityTaxContext : DbContext
     {
         public DbSet<City> Cities { get; set; }
         public DbSet<Fee> Fees { get; set; }

@@ -1,4 +1,4 @@
-﻿using DAL;
+﻿using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

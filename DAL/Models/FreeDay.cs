@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace DAL.Models
 {
-    public class Fee
+    public class FreeDay
     {
         public int Id { get; set; }
-        public TimeOnly From { get; set; }
-        public TimeOnly To { get; set; }
-        public decimal Amount { get; set; }
+        public DayOfWeek DayOfWeek { get; set; }
         public City City { get; set; }
     }
 }
