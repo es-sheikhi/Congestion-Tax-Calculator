@@ -9,8 +9,8 @@ namespace DAL.Models
     public class Fee
     {
         public int Id { get; set; }
-        public TimeOnly From { get; set; }
-        public TimeOnly To { get; set; }
+        public DateTime From { get; set; }
+        public DateTime To { get; set; }
         public decimal Amount { get; set; }
         public City City { get; set; }
     }
