@@ -10,13 +10,13 @@ using TaxCalculator.Services;
 
 namespace TaxCalculator
 {
-    public class RuleChecker:IRuleChecker
+    public class RuleCheckerService:IRuleCheckerService
     {
         private ICity _city;
         private IFeeRepository _feeRepository;
         private IFreeDayRepository _freeDaysRepository;
         private IPublicHolidayRepository _publicHolidayRepository;
-        public RuleChecker(ICity city, CityTaxContext taxContext)
+        public RuleCheckerService(ICity city, CityTaxContext taxContext)
         {
             _city = city;
             _feeRepository=new FeeRepository(taxContext);

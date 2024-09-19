@@ -7,7 +7,7 @@ using TaxCalculator.Models;
 
 namespace TaxCalculator.Services
 {
-    public interface IRuleChecker
+    public interface IRuleCheckerService
     {
         bool CanChargeTax(DateTime date, IVehicle vehicle);
         bool CheckLastTaxedTime(DateTime date, DateTime? lastTaxedTime);

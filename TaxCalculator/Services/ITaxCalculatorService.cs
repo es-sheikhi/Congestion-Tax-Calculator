@@ -8,7 +8,7 @@ using TaxCalculator.Models;
 
 namespace TaxCalculator.Services
 {
-    public interface ITaxCalculator
+    public interface ITaxCalculatorService
     {
         decimal CalculateTotalTax(IVehicle vehicle, DateTime[] dateTimes);
         decimal GetApplicableFee(decimal currentFee, DateTime currentDate, DateTime? lastTaxedTime);

@@ -10,12 +10,12 @@ using TaxCalculator.Services;
 
 namespace TaxCalculator
 {
-    public class CongestionTaxCalculator:ITaxCalculator
+    public class CongestionTaxCalculatorService:ITaxCalculatorService
     {
-        private IRuleChecker _ruleChecker;
+        private IRuleCheckerService _ruleChecker;
 
 
-        public CongestionTaxCalculator(IRuleChecker ruleChecker)
+        public CongestionTaxCalculatorService(IRuleCheckerService ruleChecker)
         {
             _ruleChecker=ruleChecker;
         }
