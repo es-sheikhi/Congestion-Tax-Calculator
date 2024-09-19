@@ -45,7 +45,7 @@ namespace TaxCalculator
             if (lastChekedTime.HasValue && _ruleChecker.CheckLastTaxedTime(currentDate, lastChekedTime.Value))
             {
                 decimal lastFee = _ruleChecker.CheckFee(lastChekedTime.Value);
-                return Math.Min(currentFee, lastFee);
+                return Math.Max(currentFee, lastFee);
             }
             return currentFee;
         }
