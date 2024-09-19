@@ -53,9 +53,10 @@ namespace TaxCalculator
 
         public decimal CheckFee(DateTime date)
         {
+            var time = date.ToShortTimeString();
             var fee = _feeRepository.GetFeesByCityName(_city.Name)
-                .Where(c =>DateTime.Compare(date, c.From)>=0 &&
-                 DateTime.Compare(date, c.To)<=0)
+                .Where(c =>string.Compare(time, c.From.ToShortTimeString())>=0 &&
+                 string.Compare(time, c.To.ToShortTimeString())<=0)
                 .FirstOrDefault().Amount;
             return fee;
         }

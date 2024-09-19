@@ -30,7 +30,7 @@ namespace TaxCalculator.Tests.Unit
         {
             _vehicle.GetVehicleType().Returns("Emergency");
 
-            var result=_sut.IsFreeVehicle(_vehicle);
+            var result = _sut.IsFreeVehicle(_vehicle);
 
             Assert.True(result);
         }
@@ -125,6 +125,83 @@ namespace TaxCalculator.Tests.Unit
 
             Assert.False(result);
         }
+
+        [Fact]
+        public void CheckLastTaxedTime_ShouldReturnTrue_WhenCalculatedTaxIsInLast60Minutes()
+        {
+            var currentDateTime = new DateTime(2024, 01, 01, 11, 0, 0);
+            var lastDateTime = new DateTime(2024, 01, 01, 10, 30, 0);
+
+            var result = _sut.CheckLastTaxedTime(currentDateTime, lastDateTime);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void CheckLastTaxedTime_ShouldReturnFalse_WhenCalculatedTaxIsNotInLast60Minutes()
+        {
+            var currentDateTime = new DateTime(2024, 01, 01, 11, 0, 0);
+            var lastDateTime = new DateTime(2024, 01, 01, 09, 30, 0);
+
+            var result = _sut.CheckLastTaxedTime(currentDateTime, lastDateTime);
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void CheckFee_ShouldReturnAmount_WhenGivenTimeIsInDefinedHours()
+        {
+            List<Fee> fees = new List<Fee>
+            {
+                new Fee
+                {
+                    From = new DateTime(2024,01,01,06,0,0),
+                    To = new DateTime(2024,01,01,06,29,0),
+                    Amount = 8
+                },
+                new Fee
+                {
+                    From = new DateTime(2024,01,01,00,0,0),
+                    To = new DateTime(2024,01,01,05,59,0),
+                    Amount = 0
+                }
+            };
+            var date = new DateTime(2024, 01, 01, 06, 12, 0);
+            _city.Name.Returns("Gothenburg");
+            _feeRepository.GetFeesByCityName(_city.Name).Returns(fees);
+
+            var result = _sut.CheckFee(date);
+
+            Assert.Equal(8, result);
+        }
+
+        [Fact]
+        public void CheckFee_ShouldReturnZero_WhenGivenTimeIsNotInDefinedHours()
+        {
+            List<Fee> fees = new List<Fee>
+            {
+                new Fee
+                {
+                    From = new DateTime(2024,01,01,06,0,0),
+                    To = new DateTime(2024,01,01,06,29,0),
+                    Amount = 8
+                },
+                new Fee
+                {
+                    From = new DateTime(2024,01,01,00,0,0),
+                    To = new DateTime(2024,01,01,05,59,0),
+                    Amount = 0
+                }
+            };
+            var date = new DateTime(2024, 01, 01, 04, 12, 0);
+            _city.Name.Returns("Gothenburg");
+            _feeRepository.GetFeesByCityName(_city.Name).Returns(fees);
+
+            var result = _sut.CheckFee(date);
+
+            Assert.Equal(0, result);
+        }
+
 
     }
 }
