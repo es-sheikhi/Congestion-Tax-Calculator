@@ -16,12 +16,13 @@ namespace TaxCalculator
         private IFeeRepository _feeRepository;
         private IFreeDayRepository _freeDaysRepository;
         private IPublicHolidayRepository _publicHolidayRepository;
-        public RuleCheckerService(ICity city, CityTaxContext taxContext)
+        public RuleCheckerService(ICity city, IFeeRepository feeRepository, 
+            IFreeDayRepository freeDayRepository, IPublicHolidayRepository publicHolidayRepository)
         {
             _city = city;
-            _feeRepository=new FeeRepository(taxContext);
-            _freeDaysRepository=new FreeDaysRepository(taxContext);
-            _publicHolidayRepository = new PublicHolidayRepository(taxContext);
+            _feeRepository = feeRepository;
+            _freeDaysRepository=freeDayRepository;
+            _publicHolidayRepository = publicHolidayRepository;
         }
         public bool CanChargeTax(DateTime date, IVehicle vehicle)
         {
